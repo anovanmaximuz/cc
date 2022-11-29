@@ -42,9 +42,9 @@ func GetProducts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	res2 := Response{
-		Status: "OK",
+		Status:  "OK",
 		Message: "no error",
-		Data: treaders
+		Data:    treaders,
 	}
 	json.NewEncoder(w).Encode(res2)
 }
