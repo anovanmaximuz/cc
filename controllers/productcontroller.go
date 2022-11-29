@@ -10,9 +10,9 @@ import (
 )
 
 type Response struct {
-	Status  string
-	Message string
-	Data    interface{}
+	code    int
+	message string
+	data    interface{}
 }
 
 func CreateProduct(w http.ResponseWriter, r *http.Request) {
@@ -42,9 +42,9 @@ func GetProducts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	res2 := Response{
-		Status:  "OK",
-		Message: "no error",
-		Data:    treaders,
+		code:    200,
+		message: "success",
+		data:    treaders,
 	}
 	json.NewEncoder(w).Encode(res2)
 }
