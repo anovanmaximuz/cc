@@ -9,12 +9,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type Response struct {
-	Status  int
-	Message string
-	Data    interface{}
-}
-
 func CreateProduct(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var product entities.Product
@@ -41,8 +35,9 @@ func GetProducts(w http.ResponseWriter, r *http.Request) {
 	database.Instance.Raw("SELECT uid, display_name as name,image as photo,win,roe,day,premium_type as premium,monetize,kyc_verified as verified FROM user_data WHERE use_app='yes' AND sso<>'device' LIMIT 0,20").Scan(&treaders)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	res2 := Response{
-		Status:  200,
+
+	res2 := entities.Response{
+		Code:    200,
 		Message: "no error",
 		Data:    treaders,
 	}
