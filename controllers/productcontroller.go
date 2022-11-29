@@ -31,8 +31,9 @@ func GetProductById(w http.ResponseWriter, r *http.Request) {
 
 func GetProducts(w http.ResponseWriter, r *http.Request) {
 	var treaders []entities.Community
+	limit := r.URL.Query().Get("limit")
 	//database.Instance.Find(&treaders)
-	database.Instance.Raw("SELECT uid, display_name as name,image as photo,win,roe,day,premium_type as premium,monetize,kyc_verified as verified FROM user_data WHERE use_app='yes' AND sso<>'device' LIMIT 0,20").Scan(&treaders)
+	database.Instance.Raw("SELECT uid, display_name as name,image as photo,win,roe,day,premium_type as premium,monetize,kyc_verified as verified FROM user_data WHERE use_app='yes' AND sso<>'device' LIMIT 0,?", limit).Scan(&treaders)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
