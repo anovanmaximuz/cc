@@ -9,9 +9,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type ApiResponse struct {
-	code string      `json:"code"`
-	Data interface{} `json:"data"`
+type Response struct {
+	Status  string
+	Message string
+	Data    interface{}
 }
 
 func CreateProduct(w http.ResponseWriter, r *http.Request) {
@@ -40,8 +41,12 @@ func GetProducts(w http.ResponseWriter, r *http.Request) {
 	database.Instance.Raw("SELECT uid, display_name as name,image as photo,win,roe,day,premium_type as premium,monetize,kyc_verified as verified FROM user_data WHERE use_app='yes' AND sso<>'device' LIMIT 0,20").Scan(&treaders)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-
-	json.NewEncoder(w).Encode(ApiResponse(200, treaders))
+	res2 := Response{
+		Status: "OK",
+		Message: "no error",
+		Data: treaders
+	}
+	json.NewEncoder(w).Encode(res2)
 }
 
 func UpdateProduct(w http.ResponseWriter, r *http.Request) {
