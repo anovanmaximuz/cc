@@ -1,7 +1,7 @@
 package database
 
 import (
-	"golang-crud-rest-api/entities"
+	"crypto-community/entities"
 	"log"
 
 	"gorm.io/driver/mysql"

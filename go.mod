@@ -1,4 +1,4 @@
-module golang-crud-rest-api
+module crypto-community
 
 go 1.18
 

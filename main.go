@@ -1,9 +1,9 @@
 package main
 
 import (
+	"crypto-community/controllers"
+	"crypto-community/database"
 	"fmt"
-	"golang-crud-rest-api/controllers"
-	"golang-crud-rest-api/database"
 	"log"
 	"net/http"
 
@@ -21,7 +21,7 @@ func main() {
 	// Initialize Database
 	database.Connect(AppConfig.ConnectionString)
 	database.Migrate()
-	
+
 	// Initialize the router
 	router := mux.NewRouter().StrictSlash(true)
 

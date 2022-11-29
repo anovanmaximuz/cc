@@ -1,9 +1,9 @@
 package controllers
 
 import (
+	"crypto-community/database"
+	"crypto-community/entities"
 	"encoding/json"
-	"golang-crud-rest-api/database"
-	"golang-crud-rest-api/entities"
 	"net/http"
 
 	"github.com/gorilla/mux"
