@@ -10,7 +10,7 @@ import (
 )
 
 type Response struct {
-	Status  string
+	Status  int
 	Message string
 	Data    interface{}
 }
@@ -42,7 +42,7 @@ func GetProducts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	res2 := Response{
-		Status:  "OK",
+		Status:  200,
 		Message: "no error",
 		Data:    treaders,
 	}
