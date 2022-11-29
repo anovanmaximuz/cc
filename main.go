@@ -34,7 +34,6 @@ func main() {
 }
 
 func RegisterProductRoutes(router *mux.Router) {
-	router.HandleFunc("/api/traders", controllers.GetTraders).Methods("GET")
 	router.HandleFunc("/api/products", controllers.GetProducts).Methods("GET")
 	router.HandleFunc("/api/products/{id}", controllers.GetProductById).Methods("GET")
 	router.HandleFunc("/api/products", controllers.CreateProduct).Methods("POST")
