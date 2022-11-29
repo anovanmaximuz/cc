@@ -10,8 +10,8 @@ import (
 )
 
 type ApiResponse struct {
-    code string `json:"code"`
-    Data interface `json:"data"`
+	code string      `json:"code"`
+	Data interface{} `json:"data"`
 }
 
 func CreateProduct(w http.ResponseWriter, r *http.Request) {
