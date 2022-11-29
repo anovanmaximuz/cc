@@ -43,7 +43,7 @@ func GetProducts(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	res2 := Response{
 		code:    200,
-		message: "success",
+		message: "success dan berhasil",
 		data:    treaders,
 	}
 	json.NewEncoder(w).Encode(res2)
