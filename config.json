@@ -1,0 +1,4 @@
+{
+    "connection_string": "developer:anaconda@tcp(127.0.0.1:3134)/market",
+    "port": 8080
+}
