@@ -30,11 +30,12 @@ func GetProductById(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetProducts(w http.ResponseWriter, r *http.Request) {
-	var products []entities.Community
-	database.Instance.Find(&products)
+	var treaders []entities.Community
+	//database.Instance.Find(&treaders)
+	database.Instance.Raw("SELECT uid, display_name as name,image as photo,win,roe,day,premium_type,monetize,kyc_verified FROM user_data WHERE use_app='yes' AND sso<>'device' LIMIT 0,20").Scan(&treaders)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(products)
+	json.NewEncoder(w).Encode(treaders)
 }
 
 func UpdateProduct(w http.ResponseWriter, r *http.Request) {
