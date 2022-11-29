@@ -9,14 +9,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func CreateProduct(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	var product entities.Product
-	json.NewDecoder(r.Body).Decode(&product)
-	database.Instance.Create(&product)
-	json.NewEncoder(w).Encode(product)
-}
-
 func GetProductById(w http.ResponseWriter, r *http.Request) {
 	productId := mux.Vars(r)["id"]
 	if checkIfProductExists(productId) == false {
@@ -29,12 +21,13 @@ func GetProductById(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(product)
 }
 
-func GetProducts(w http.ResponseWriter, r *http.Request) {
-	var products []entities.Community
-	database.Instance.Find(&products)
+func GetTraders(w http.ResponseWriter, r *http.Request) {
+	var treaders []entities.Community
+	//database.Instance.Find(&treaders)
+	database.Instance.Raw("SELECT uid, display_name as name,image as photo,win,roe,day,premium_type,monetize,kyc_verified FROM user_data WHERE use_app='yes' AND sso<>'device' LIMIT 0,20").Scan(&treaders)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(products)
+	json.NewEncoder(w).Encode(treaders)
 }
 
 func UpdateProduct(w http.ResponseWriter, r *http.Request) {
